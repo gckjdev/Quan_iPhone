@@ -16,10 +16,12 @@
 #import "EnterPlaceAppController.h"
 #import "AppManager.h"
 #import "UserService.h"
+#import "CategoryService.h"
+#import "PPTabBarController.h"
 
 // TODO remove all depedency class header files
 
-@class PlaceSNSService;
+@class GroupBuySNSService;
 @class MessageService;
 @class PostService;
 @class AppService;
@@ -29,27 +31,28 @@
 @class ShoppingListController;
 
 #define _THREE20_		1
-#define kAppId			@"456494464"					// To be changed for each project
-#define kMobClickKey	@"4e2d3cc0431fe371c3000029"		// To be changed for each project
+#define kAppId			@"481250437"					// To be changed for each project
+#define kMobClickKey	@"4ec3cc6052701573d1000003"		// To be changed for each project
 
 #define MAKE_FRIEND_PLACEID @"GroupBuy"
 
 @interface groupbuyAppDelegate : PPApplication <UIApplicationDelegate, UITabBarControllerDelegate, MobClickDelegate, EnterPlaceAppDelegate,
-LocalDataServiceDelegate, UserServiceDelegate> {
+LocalDataServiceDelegate, UserServiceDelegate, CityPickerDelegate> {
     
     UIWindow			*window;
-    UITabBarController	*tabBarController;
+    PPTabBarController	*tabBarController;
 	CoreDataManager		*dataManager;	
     
     LocalDataService    *localDataService;
     LocationService     *locationService;
     UserService         *userService;
     RegisterController  *registerController;
-    PlaceSNSService     *snsService;
+    GroupBuySNSService  *snsService;
     MessageService      *messageService;
     PostService         *postService;
     AppService          *appService;    
     ProductService      *productService;
+    CategoryService     *categoryService;
     UserShopItemService *userShopService;
     
     ReviewRequest           *reviewRequest;
@@ -61,16 +64,17 @@ LocalDataServiceDelegate, UserServiceDelegate> {
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow				*window;
-@property (nonatomic, retain) IBOutlet UITabBarController	*tabBarController;
+@property (nonatomic, retain) IBOutlet PPTabBarController	*tabBarController;
 @property (nonatomic, retain) CoreDataManager				*dataManager;
 @property (nonatomic, retain) LocalDataService              *localDataService;
 @property (nonatomic, retain) LocationService               *locationService;
 @property (nonatomic, retain) UserService                   *userService;
-@property (nonatomic, retain) PlaceSNSService               *snsService;
+@property (nonatomic, retain) GroupBuySNSService            *snsService;
 @property (nonatomic, retain) MessageService                *messageService;
 @property (nonatomic, retain) PostService                   *postService;
 @property (nonatomic, retain) AppService                    *appService;
 @property (nonatomic, retain) ProductService                *productService;
+@property (nonatomic, retain) CategoryService               *categoryService;
 @property (nonatomic, retain) UserShopItemService           *userShopService;
 @property (nonatomic, retain) RegisterController            *registerController;
 @property (nonatomic, retain) EnterPlaceAppController       *enterController;    
@@ -86,6 +90,8 @@ LocalDataServiceDelegate, UserServiceDelegate> {
 - (void)addMainView;
 - (void)removeMainView;
 - (void)dismissRegisterView;
+
+
 
 @end
 

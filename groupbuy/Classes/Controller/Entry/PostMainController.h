@@ -9,14 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
 
-@class PrivateMessageUserController;
-@class PublicTimelinePostController;
 @class CommonProductListController;
 @class ProductCategoryController;
 
 @interface PostMainController : PPViewController {
-    PrivateMessageUserController *privateMessageController;
-    PublicTimelinePostController *latestPostController;
     
     CommonProductListController *priceController;
     CommonProductListController *rebateController;
@@ -26,9 +22,6 @@
     ProductCategoryController *todayController;
     
 }
-
-@property (nonatomic, retain) PrivateMessageUserController *privateMessageController;
-@property (nonatomic, retain) PublicTimelinePostController *latestPostController;
 
 @property (nonatomic, retain) CommonProductListController *priceController;
 @property (nonatomic, retain) CommonProductListController *rebateController;

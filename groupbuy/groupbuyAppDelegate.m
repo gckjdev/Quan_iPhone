@@ -9,6 +9,8 @@
 #import "groupbuyAppDelegate.h"
 #import "UIUtils.h"
 #import "ReviewRequest.h"
+#import "DeviceDetection.h"
+#import "UINavigationBarExt.h"
 
 // optional header files
 #import "AboutViewController.h"
@@ -17,7 +19,7 @@
 #import "SelectItemViewController.h"
 #import "SettingsController.h"
 
-#import "SearchProductController.h"
+#import "CustomSearchProductController.h"
 #import "MyInfoController.h"
 #import "InviteController.h"
 #import "FeedbackController.h"
@@ -38,7 +40,9 @@
 #import "ProductService.h"
 #import "UserShopItemService.h"
 #import "ProductManager.h"
+
 #import "GroupBuyUserService.h"
+#import "GroupBuySNSService.h"
 
 #import "ProductPriceDataLoader.h"
 #import "GroupBuyReport.h"
@@ -47,15 +51,28 @@
 
 #import "CityPickerViewController.h"
 #import "ShoppingListController.h"
+#import "TopScoreController.h"
+
+#import "CategoryController.h"
 
 #define kDbFileName			@"AppDB"
 
 NSString* GlobalGetServerURL()
 {
+//   return @"http://192.168.1.101:8000/api/i?";
 
-   return @"http://192.168.1.101:8000/api/i?";
+//   return @"http://192.168.1.188:8000/api/i?";
+    return @"http://uhz001030.chinaw3.com/api/i?";
+    
+
 //    return @"http://www.dipan100.com:8000/api/i?";
 
+}
+
+CategoryService *GlobalGetCategoryService()
+{
+    groupbuyAppDelegate* delegate = (groupbuyAppDelegate*)[[UIApplication sharedApplication] delegate];    
+    return delegate.categoryService;
 }
 
 AppService* GlobalGetAppService()
@@ -96,7 +113,7 @@ UserService* GlobalGetUserService()
     return [delegate userService];    
 }
 
-PlaceSNSService* GlobalGetSNSService()
+GroupBuySNSService* GlobalGetGroupBuySNSService()
 {
     groupbuyAppDelegate* delegate = (groupbuyAppDelegate*)[[UIApplication sharedApplication] delegate];    
     return [delegate snsService];    
@@ -105,6 +122,11 @@ PlaceSNSService* GlobalGetSNSService()
 NSString* GlobalGetPlaceAppId()
 {
     return @"GROUPBUY";
+}
+
+PlaceSNSService*   GlobalGetSNSService()
+{
+    return nil;
 }
 
 ProductService* GlobalGetProductService()
@@ -136,6 +158,7 @@ UserShopItemService* GlobalGetUserShopItemService()
 @synthesize appService;
 @synthesize productService;
 @synthesize userShopService;
+@synthesize categoryService;
 @synthesize reviewRequest;
 
 #pragma mark -
@@ -143,62 +166,105 @@ UserShopItemService* GlobalGetUserShopItemService()
 
 enum
 {
-    TAB_SHOPPING = 2,    
+    TAB_TOP_SCORE = 0,
+    TAB_SHOPPING = 3,    
+    TAB_MY_INFO = 4
 };
+
+- (void)updateMyInfoTab
+{
+    // TODO
+    if ([userService hasBindAccount]){
+        
+    }
+    else{
+        
+    }
+}
 
 - (void)initTabViewControllers
 {
+    
     tabBarController.delegate = self;
     
 	NSMutableArray* controllers = [[NSMutableArray alloc] init];
     
-	[UIUtils addViewController:[PostMainController alloc]
-					 viewTitle:@"首页"
-					 viewImage:@"home_24.png"
+	[UIUtils addViewController:[TopScoreController alloc]
+					 viewTitle:@"排行榜"
+					 viewImage:@"tu_06.png"
 			  hasNavController:YES			
 			   viewControllers:controllers];	
 
-	[UIUtils addViewController:[SearchProductController alloc]
-					 viewTitle:@"热门"				 
-					 viewImage:@"magnifier_24.png"
-			  hasNavController:YES			
-			   viewControllers:controllers];	
-	
-	shoppingListController = (ShoppingListController*)[UIUtils addViewController:[ShoppingListController alloc]
-					 viewTitle:@"团购通知"				 
-					 viewImage:@"cart_24.png"
-			  hasNavController:YES			
-			   viewControllers:controllers];
-    
-    shoppingListController.tabIndex = TAB_SHOPPING;
-    
-	
-	CommonProductListController* historyController = (CommonProductListController*)[UIUtils addViewController:[CommonProductListController alloc]
-					 viewTitle:@"收藏"				 
-					 viewImage:@"folder_bookmark_24.png"
-			  hasNavController:YES			
-			   viewControllers:controllers];	
-    historyController.dataLoader = [[ProductFavoriteDataLoader alloc] init];
-    
-//	[UIUtils addViewController:[MyInfoController alloc]
-//					 viewTitle:NSLS(@"Setting")				 
-//					 viewImage:@"man_24.png"
+//	[UIUtils addViewController:[CategoryController alloc]
+//					 viewTitle:@"分类"
+//					 viewImage:@"tu_07.png"
 //			  hasNavController:YES			
 //			   viewControllers:controllers];	
-
-    [UIUtils addViewController:[SettingsController alloc]
-					 viewTitle:@"设置"				 
-					 viewImage:@"gear_24.png"
-			  hasNavController:YES			
-			   viewControllers:controllers];	
-        
-	[UIUtils addViewController:[FeedbackController alloc]
-					 viewTitle:@"反馈"
-					 viewImage:@"help_24.png"
+    
+	[UIUtils addViewController:[CustomSearchProductController alloc]
+					 viewTitle:@"热门·搜索"				 
+					 viewImage:@"tu_10.png"
 			  hasNavController:YES			
 			   viewControllers:controllers];	
 	
+//	shoppingListController = (ShoppingListController*)[UIUtils addViewController:[ShoppingListController alloc]
+//					 viewTitle:@"团购通知"				 
+//					 viewImage:@"tu_12.png"
+//			  hasNavController:YES			
+//			   viewControllers:controllers];
+//    
+//    shoppingListController.tabIndex = TAB_SHOPPING;
+    
+    if ([userService hasBindAccount]){
+        [UIUtils addViewController:[MyInfoController alloc]
+                         viewTitle:@"设置"
+                         viewImage:@"tu_13.png"
+                  hasNavController:YES			
+                   viewControllers:controllers];	        
+    }
+    else{
+        [UIUtils addViewController:[RegisterController alloc]
+                         viewTitle:@"设置"
+                         viewImage:@"tu_13.png"
+                  hasNavController:YES			
+                   viewControllers:controllers];	
+    }
+    
+    [self.tabBarController setSelectedImageArray:[NSArray arrayWithObjects:
+                                                  @"tu_21.png", 
+//                                                  @"tu_22.png", 
+                                                  @"tu_23.png", 
+//                                                  @"tu_24.png", 
+                                                  @"tu_25.png", nil]];
+
+//	CommonProductListController* favorController = (CommonProductListController*)[UIUtils addViewController:[CommonProductListController alloc]
+//					 viewTitle:@"收藏"				 
+//					 viewImage:@"folder_bookmark_24.png"
+//			  hasNavController:YES			
+//			   viewControllers:controllers];	
+//    favorController.dataLoader = [[ProductFavoriteDataLoader alloc] init];
+//    
+//    CommonProductListController* historyController = (CommonProductListController*)[UIUtils addViewController:[CommonProductListController alloc]
+//					 viewTitle:@"历史"				 
+//					 viewImage:@"storage.png"
+//			  hasNavController:YES			
+//			   viewControllers:controllers];	
+//    historyController.dataLoader = [[ProductHistoryDataLoader alloc] init];
+//    
+//    [UIUtils addViewController:[SettingsController alloc]
+//					 viewTitle:@"设置"				 
+//					 viewImage:@"gear_24.png"
+//			  hasNavController:YES			
+//			   viewControllers:controllers];	
+//        
+//	[UIUtils addViewController:[FeedbackController alloc]
+//					 viewTitle:@"反馈"
+//					 viewImage:@"help_24.png"
+//			  hasNavController:YES			
+//			   viewControllers:controllers];	
+	
 	tabBarController.viewControllers = controllers;
+    tabBarController.selectedIndex = TAB_TOP_SCORE;        
 	
 	[controllers release];
 }
@@ -233,12 +299,17 @@ enum
 
 - (void)initSNSService
 {
-    self.snsService = [[PlaceSNSService alloc] init];
+    self.snsService = [[GroupBuySNSService alloc] init];
 }
 
 - (void)initPostService
 {
     self.postService = [[PostService alloc] init];
+}
+
+- (void)initCategoryService
+{
+    self.categoryService = [[[CategoryService alloc] init] autorelease];
 }
 
 - (void)initAppService
@@ -254,6 +325,7 @@ enum
 - (void)initUserShopService
 {
     self.userShopService = [[UserShopItemService alloc] init];
+    self.userShopService.userShopItemServiceDelegate = shoppingListController;
 }
 
 - (void)showViewByUserStatus
@@ -262,6 +334,12 @@ enum
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+    
+    [application setApplicationIconBadgeNumber:0];
+    [tabBarController setBarBackground:@"tu_209.png"];
+    [tabBarController setTextColor:[UIColor colorWithRed:194/255.0 green:188/255.0 blue:180/255.0 alpha:1.0]
+                   selectTextColor:[UIColor colorWithRed:210/255.0 green:217/255.0 blue:133/255.0 alpha:1.0]];
+    tabBarController.buttonStyle = TAB_BUTTON_STYLE_ICON;
     
 	NSLog(@"Application starts, launch option = %@", [launchOptions description]);	
 	
@@ -280,22 +358,22 @@ enum
     [self initAppService];    
     [self initProductService];
     [self initUserShopService];
+    [self initCategoryService];        
     
     [self showViewByUserStatus];
-    
     
     [window makeKeyAndVisible];
 	
     // update config data
     [appService startAppUpdate];
-    [productService updateKeywords];
+    [productService updateKeywords:KEYWORD_TYPE_QUAN];
     
 	// Ask For Review
 	// self.reviewRequest = [ReviewRequest startReviewRequest:kAppId appName:GlobalGetAppName() isTest:NO];
     
-    if (![self isPushNotificationEnable]){
-        [self bindDevice];
-    }
+//    if (![self isPushNotificationEnable]){
+//        [self bindDevice];
+//    }
     
     return YES;
 }
@@ -386,28 +464,54 @@ enum
 	[MobClick appTerminated];
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    NSString *host = [url host];
-    if ([host isEqualToString:@"sina"]) {        
-        [snsService sinaParseAuthorizationResponseURL:[url query]];
-    } else if ([host isEqualToString:@"qq"]) {
-        [snsService qqParseAuthorizationResponseURL:[url query]];
-    }
-    
-    return YES;
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+//    NSString *host = [url host];
+//    if ([host isEqualToString:@"sina"]) {        
+//        [snsService sinaParseAuthorizationResponseURL:[url query]];
+//    } else if ([host isEqualToString:@"qq"]) {
+//        [snsService qqParseAuthorizationResponseURL:[url query]];
+//    }
+//    
+//    return YES;
+//}
+
+- (void)clearNavigationBar
+{
+    GlobalSetNavBarBackground(nil);
+}
+
+- (void)setNavigationBar
+{
+    GlobalSetNavBarBackground(@"navigationbar.png");
+}
+
+-(void) dealWithPickedCity:(NSString *)city
+{
+    [locationService setDefaultCity:city];
+    [self setNavigationBar];
 }
 
 #pragma mark - User Service Delegate
 - (void)checkDeviceResult:(int)result
 {
     [self addMainView];
+    
 
     NSString *defaultCity = [locationService getDefaultCity];    
     if (defaultCity == nil) {
+        
+//        [self clearNavigationBar];
+        
         CityPickerViewController *cityController = [[CityPickerViewController alloc]initWithCityName:defaultCity hasLeftButton:NO];
-        cityController.delegate = locationService;
+        cityController.delegate = self;
+//        cityController.useForGroupBuy = NO;
+//        cityController.hidesBottomBarWhenPushed = NO;
+        [cityController enableGroupBuySettings];
         [[[tabBarController viewControllers] objectAtIndex:0] pushViewController:cityController animated:YES];  
         [cityController release];
+    }
+    else{
+
     }
 }
 
@@ -475,10 +579,14 @@ enum
 }
 
 - (void)addMainView {
+    
+    [self setNavigationBar];
+    
     // Init tab bar and window
 	[self initTabViewControllers];
     [tabBarController.view removeFromSuperview];
 	[window addSubview:tabBarController.view];
+    [tabBarController viewDidAppear:NO];
 }
 
 - (void)removeMainView {
@@ -553,6 +661,7 @@ enum
 	// release data objects
 	[dataManager release];
     [localDataService release];
+    [categoryService release];
     [locationService release];
     [snsService release];
     [dataForRegistration release];
@@ -592,13 +701,8 @@ enum
     // Get a hex string from the device token with no spaces or < >	
 	[self saveDeviceToken:deviceToken];    
     
-    if ([userService user] == nil){
-        // user not registered yet, device token will be carried by registration request        
-    }
-    else{
-        // user already register
-        [userService updateGroupBuyUserDeviceToken:[self getDeviceToken]];
-    }
+    // user already register
+    [userService updateGroupBuyUserDeviceToken:[self getDeviceToken]];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *) error {
@@ -652,9 +756,9 @@ enum
         
         NSString *itemId = [[payload objectForKey:@"aps"] valueForKey:@"ii"];				
         [self updateShoppingTabBadge:@"新"];        
-        [userShopService requestItemMatchCount:itemId tableViewController:shoppingListController];
-        
+        [userShopService requestItemMatchCount:itemId];
 	}	
+    
 }
 
 
