@@ -377,6 +377,8 @@
 		CAA01A4513E64D640002986A /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA01A4313E64D630002986A /* SettingsController.m */; };
 		CAA01A4613E64D640002986A /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAA01A4413E64D630002986A /* SettingsController.xib */; };
 		CAA46EF013F3734B00688E64 /* libMobClickLibrary_1.6.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA46EEF13F3734B00688E64 /* libMobClickLibrary_1.6.4.a */; };
+		CAAF090E1476113E00B0D916 /* TaobaoProductTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF090C1476113E00B0D916 /* TaobaoProductTextCell.m */; };
+		CAAF090F1476113E00B0D916 /* TaobaoProductTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAAF090D1476113E00B0D916 /* TaobaoProductTextCell.xib */; };
 		CAB17430146A177E00F0F248 /* tu_182@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB1742F146A177E00F0F248 /* tu_182@2x.png */; };
 		CAB6A705141A6792007E6253 /* TopScoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB6A703141A6792007E6253 /* TopScoreController.m */; };
 		CAB6A706141A6792007E6253 /* TopScoreController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB6A704141A6792007E6253 /* TopScoreController.xib */; };
@@ -1123,6 +1125,10 @@
 		CAA01A4313E64D630002986A /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
 		CAA01A4413E64D630002986A /* SettingsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsController.xib; sourceTree = "<group>"; };
 		CAA46EEF13F3734B00688E64 /* libMobClickLibrary_1.6.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary_1.6.4.a; sourceTree = "<group>"; };
+		CAAF090A1476113E00B0D916 /* CommonProductTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonProductTextCell.h; sourceTree = "<group>"; };
+		CAAF090B1476113E00B0D916 /* TaobaoProductTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaobaoProductTextCell.h; sourceTree = "<group>"; };
+		CAAF090C1476113E00B0D916 /* TaobaoProductTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaobaoProductTextCell.m; sourceTree = "<group>"; };
+		CAAF090D1476113E00B0D916 /* TaobaoProductTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaobaoProductTextCell.xib; sourceTree = "<group>"; };
 		CAB1107F14354BAB009DBB8D /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
 		CAB1742F146A177E00F0F248 /* tu_182@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tu_182@2x.png"; path = "png@2x/tu_182@2x.png"; sourceTree = "<group>"; };
 		CAB17431146A20D700F0F248 /* MainDataModel 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 6.xcdatamodel"; sourceTree = "<group>"; };
@@ -2733,6 +2739,10 @@
 		CADF6BBB13DAA4810060F438 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CAAF090A1476113E00B0D916 /* CommonProductTextCell.h */,
+				CAAF090B1476113E00B0D916 /* TaobaoProductTextCell.h */,
+				CAAF090C1476113E00B0D916 /* TaobaoProductTextCell.m */,
+				CAAF090D1476113E00B0D916 /* TaobaoProductTextCell.xib */,
 				CA1136171473F0ED004D517E /* Search */,
 				CAD0480114622C750071F8B4 /* ProductDetail */,
 				CAD0480014622C2D0071F8B4 /* ShoppingItem */,
@@ -3293,6 +3303,7 @@
 				CAF45E8B146682C700C6B65B /* README.md in Resources */,
 				CAB17430146A177E00F0F248 /* tu_182@2x.png in Resources */,
 				CA11361C1473F0EE004D517E /* CustomSearchProductController.xib in Resources */,
+				CAAF090F1476113E00B0D916 /* TaobaoProductTextCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3621,6 +3632,7 @@
 				CAF45E8A146682C700C6B65B /* OHAttributedLabel.m in Sources */,
 				CA0C4D8F1467746900E80454 /* NumberUtil.m in Sources */,
 				CA11361B1473F0EE004D517E /* CustomSearchProductController.m in Sources */,
+				CAAF090E1476113E00B0D916 /* TaobaoProductTextCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

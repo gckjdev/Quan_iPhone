@@ -69,6 +69,11 @@ NSString* GlobalGetServerURL()
 
 }
 
+int GlobalGetProductDisplayType()
+{
+    return PRODUCT_DISPLAY_GROUPBUY;
+}
+
 CategoryService *GlobalGetCategoryService()
 {
     groupbuyAppDelegate* delegate = (groupbuyAppDelegate*)[[UIApplication sharedApplication] delegate];    
