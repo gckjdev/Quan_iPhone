@@ -87,6 +87,7 @@
 		CA5D139A13D55A9F003CB28C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA5D139813D55A9F003CB28C /* InfoPlist.strings */; };
 		CA5D139D13D55A9F003CB28C /* groupbuyTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CA5D139C13D55A9F003CB28C /* groupbuyTests.h */; };
 		CA5D139F13D55A9F003CB28C /* groupbuyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5D139E13D55A9F003CB28C /* groupbuyTests.m */; };
+		CA606F29147F38EF00699393 /* ActionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA606F28147F38EF00699393 /* ActionHandler.m */; };
 		CA60798413D55EE200E0D0DC /* AddressBookUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA60751913D55EE200E0D0DC /* AddressBookUtils.m */; };
 		CA60798513D55EE200E0D0DC /* CustomIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA60751C13D55EE200E0D0DC /* CustomIndexView.m */; };
 		CA60798613D55EE200E0D0DC /* EnhanceUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CA60751E13D55EE200E0D0DC /* EnhanceUIApplication.m */; };
@@ -672,6 +673,8 @@
 		CA5D139B13D55A9F003CB28C /* groupbuyTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "groupbuyTests-Prefix.pch"; sourceTree = "<group>"; };
 		CA5D139C13D55A9F003CB28C /* groupbuyTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = groupbuyTests.h; sourceTree = "<group>"; };
 		CA5D139E13D55A9F003CB28C /* groupbuyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = groupbuyTests.m; sourceTree = "<group>"; };
+		CA606F27147F38EF00699393 /* ActionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionHandler.h; sourceTree = "<group>"; };
+		CA606F28147F38EF00699393 /* ActionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionHandler.m; sourceTree = "<group>"; };
 		CA60751813D55EE200E0D0DC /* AddressBookUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookUtils.h; sourceTree = "<group>"; };
 		CA60751913D55EE200E0D0DC /* AddressBookUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookUtils.m; sourceTree = "<group>"; };
 		CA60751B13D55EE200E0D0DC /* CustomIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIndexView.h; sourceTree = "<group>"; };
@@ -1767,6 +1770,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CA606F26147F38EF00699393 /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				CA606F27147F38EF00699393 /* ActionHandler.h */,
+				CA606F28147F38EF00699393 /* ActionHandler.m */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
 		CA6071C313D55EE000E0D0DC /* Common_Iphone */ = {
 			isa = PBXGroup;
 			children = (
@@ -2656,6 +2668,7 @@
 		CADF6B6C13DA9ACB0060F438 /* GroupBuyCommon */ = {
 			isa = PBXGroup;
 			children = (
+				CA606F26147F38EF00699393 /* Action */,
 				CA3E546D13E530010013C33C /* Report */,
 				CA0AAEBB13E3BA830050F143 /* Resource */,
 				CADF6BBB13DAA4810060F438 /* Controller */,
@@ -3667,6 +3680,7 @@
 				CA11361B1473F0EE004D517E /* CustomSearchProductController.m in Sources */,
 				CAAF090E1476113E00B0D916 /* TaobaoProductTextCell.m in Sources */,
 				CA4E05A8147A397A007728DB /* AdViewUtils.m in Sources */,
+				CA606F29147F38EF00699393 /* ActionHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

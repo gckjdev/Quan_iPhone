@@ -76,12 +76,12 @@ int GlobalGetProductDisplayType()
 
 BOOL GlobalGetEnableAd()
 {
-    return NO;
+    return YES;
 }
 
 NSString* GlobalGetEnableAdPubliserId()
 {
-    return nil;
+    return @"a14ecf0294c7240";
 }
 
 CategoryService *GlobalGetCategoryService()
